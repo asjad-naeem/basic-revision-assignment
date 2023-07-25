@@ -67,7 +67,13 @@ class Hashmap
 
       current = list
       while current
-        puts "Key:#{current.key} Value:#{current.value}"
+        if current.value.class == Hashmap
+          puts '{'
+          current.value.print
+          puts '}'
+        else
+          puts "Key:#{current.key} Value:#{current.value}"
+        end
         current = current.next
       end
     end
@@ -77,9 +83,13 @@ end
 hashmap = Hashmap.new
 hashmap.push(1, 'a')
 hashmap.push(2, 'b')
-hashmap.push(3, 'c')
-hashmap.push(3, 'd')
 hashmap.push(3, 1)
-puts hashmap.get(1)
+hashmap.print             #Key: 1 Value: a  Key: 2 Value: b Key: 3 Value: 1
+h = Hashmap.new
+h.push(1,'asjad')
+h.push(2,'adil')
+hashmap.push(4, h)
+hashmap.print             #Key: 3 Value: 1  Key: 2 Value: b  {Key:2 Value:adil    Key:1 Value:asjad}  Key: 1 Value: a
+puts hashmap.get(1)       #a
 hashmap.delete(1)
-hashmap.print
+hashmap.print             #Key:2 Value:b  Key:3 Value:1 {Key:2 Value:adil   Key:1 Value:asjad}
