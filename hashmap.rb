@@ -78,6 +78,8 @@ class Hashmap
       end
     end
   end
+
+  private :calculate_hash, :add_to_list
 end
 
 hashmap = Hashmap.new
